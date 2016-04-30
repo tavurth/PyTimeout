@@ -89,6 +89,11 @@ class Timer:
         # The event was not triggered
         return False
 
+    def remove(self):
+        
+        with EventsList as eList:
+            del eList[self.index_id]
+
 def event_listener_loop(*args, **kwargs):
     """ Listen for active events """
     global EventsList
