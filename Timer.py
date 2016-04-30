@@ -105,7 +105,7 @@ def event_listener_loop(*args, **kwargs):
                     del eList[event.index_id]
 
                 # Set the time to wait to the granularity of the fastest event
-                EventsList.sleepTime = min(EventsList.sleepTime, event.delay / 2.0)
+                EventsList.sleepTime = min(EventsList.sleepTime, event.delay / 4.0)
 
             # Stop the thread when we have no more pending events
             if not len(eList):
