@@ -1,5 +1,5 @@
 # PyTimer
-A simple timed callout function for python
+A simple timed callback function for python
 
 # Use:
 
@@ -10,4 +10,10 @@ A simple timed callout function for python
      print a, b
  
   Timer(2, callback, "Hello", "World")
+ ```
+
+# Requirements
+ ```
+   gevent
+   python 2.7
  ```
