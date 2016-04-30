@@ -33,10 +33,13 @@ from gevent import lock
 
 class Resource:
 
-    def __init__(self, resource):
+    def __init__(self, resource, **kwargs):
         """ Save a Resource, and add an associated Semaphore """
         self.resource  = resource
         self.semaphore = gevent.lock.Semaphore()
+
+        # Allow the caller to change the sleeping time for wait handler
+        self.sleepTime = kwargs.get('sleep', 1)
 
     def unlock(self):
         """ Unlock a shared resource """
@@ -49,7 +52,7 @@ class Resource:
             # Try to acquire the semaphore, else continue
             if not self.semaphore.acquire(timeout = kwargs.get('timeout', 1)):
                 # Sleep to save CPU
-                gevent.sleep(1)
+                gevent.sleep(self.sleepTime)
 
                 # Continue to wait for the locking mechanism
                 continue

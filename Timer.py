@@ -111,8 +111,11 @@ def event_listener_loop(*args, **kwargs):
             if not len(eList):
                 break
 
+            # Update the Resource sleep delay 
+            eList.sleepTime = timeToWait
+
         # Wait
-        time.sleep(1)
+        time.sleep(timeToWait)
 
 if __name__ == '__main__':
 
