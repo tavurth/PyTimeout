@@ -94,8 +94,8 @@ def event_listener_loop(*args, **kwargs):
     global EventsList
     
     while True:
-        # Used to hold the waiting time
-        timeToWait = 1
+        # Reset the time to wait for the EventsList resource
+        EventsList.sleepTime = 1
         
         # Checking all events until they are no longer pending
         with EventsList as eList:
@@ -105,17 +105,14 @@ def event_listener_loop(*args, **kwargs):
                     del eList[event.index_id]
 
                 # Set the time to wait to the granularity of the fastest event
-                timeToWait = min(timeToWait, event.delay / 2.0)
+                EventsList.sleepTime = min(EventsList.sleepTime, event.delay / 2.0)
 
             # Stop the thread when we have no more pending events
             if not len(eList):
                 break
 
-            # Update the Resource sleep delay 
-            EventsList.sleepTime = timeToWait
-
-        # Wait
-        time.sleep(timeToWait)
+        # Wait until the next event is likely
+        time.sleep(EventsList.sleepTime)
 
 if __name__ == '__main__':
 
