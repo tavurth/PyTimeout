@@ -1,7 +1,7 @@
 # PyTimer
 A simple timed callback function for python
 
-# Use:
+# Use
 
  ```
   from PyTimer import Timer
