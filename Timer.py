@@ -47,11 +47,6 @@ class Timer:
         """ Create an event timer, adding it to the EventsList """
         global EventsList, EventsIdCache, TimedLooper
 
-        # Start the thread if it does not exist
-        if not TimedLooper or not TimedLooper.is_alive():
-            TimedLooper = threading.Thread(None, event_listener_loop)
-            TimedLooper.start()
-
         # Saving internal variables
         self.args = args
         self.kwargs = kwargs
@@ -61,7 +56,15 @@ class Timer:
         self.delay   = delay
         self.timeout = time.time() + delay
 
+        # Wait for the events list to become free
         with EventsList as eList:
+            
+            # Start the thread if it does not exist
+            if not TimedLooper or not TimedLooper.is_alive():
+                TimedLooper = threading.Thread(None, event_listener_loop)
+                TimedLooper.start()
+
+            # Save this event to the event list
             self.index_id = str(EventsIdCache)
             EventsIdCache += 1
 
