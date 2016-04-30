@@ -112,7 +112,7 @@ def event_listener_loop(*args, **kwargs):
                 break
 
             # Update the Resource sleep delay 
-            eList.sleepTime = timeToWait
+            EventsList.sleepTime = timeToWait
 
         # Wait
         time.sleep(timeToWait)
