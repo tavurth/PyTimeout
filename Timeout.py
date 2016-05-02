@@ -41,7 +41,7 @@ TimedLooper = None
 # Used to keep track of event Ids
 EventsIdCache = 0
 
-class Timer:
+class Timeout:
 
     def __init__(self, delay, callback, *args, **kwargs):
         """ Create an event timer, adding it to the EventsList """
@@ -128,8 +128,8 @@ if __name__ == '__main__':
         print 'Args recieved: "', arg1, arg2, '"'
         print 'Time since call:', time.time() - startTime, "\r\n"
 
-    Timer(3, my_func, 'Hello', 'again!')
-    Timer(1, my_func, 'Hello', 'world')
+    Timeout(3, my_func, 'Hello', 'again!')
+    Timeout(1, my_func, 'Hello', 'world')
 
     # Will not run as we remove it
-    Timer(2, my_func, 'Will Not', 'Run!').remove()
+    Timeout(2, my_func, 'Will Not', 'Run!').remove()

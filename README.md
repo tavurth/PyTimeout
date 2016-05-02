@@ -1,15 +1,15 @@
-# PyTimer
+# PyTimeout
 A simple timed callback function for python
 
 # Use
 
  ```
-  from PyTimer import Timer
+  from PyTimeout import Timeout
 
   def callback(a, b, **kwargs):
      print a, b
  
-  Timer(2, callback, "Hello", "World")
+  Timeout(2, callback, "Hello", "World")
  ```
 
 # Requirements
